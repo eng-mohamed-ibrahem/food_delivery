@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../contoller/utils/light_theme.dart';
-import '../view/screen/splash.dart';
+import '../view/screen/set_location_screen.dart';
 
 class RootApp extends StatelessWidget {
   const RootApp({super.key});
@@ -11,7 +11,7 @@ class RootApp extends StatelessWidget {
     return ProviderScope(
       child: MaterialApp(
         theme: getLightTheme(),
-        home: const Splash(),
+        home: const LocationScreen(), // Splash , LocationScreen
       ),
     );
   }

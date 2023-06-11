@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/view/screen/order_details.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,7 +10,9 @@ class Splash extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    log('from splash build');
     Future(() => ref.read(ordersListProvider.notifier).initializeProvider());
+
     return Scaffold(
       body: Center(
         child: ElevatedButton(

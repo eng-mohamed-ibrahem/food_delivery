@@ -4,7 +4,7 @@ import 'package:food_delivery/contoller/provider/orders_list_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../model/food_model.dart';
 import '../widget/dismissible_widget.dart';
-import '../widget/food_widget.dart';
+import '../widget/food_widget_with_count.dart';
 import '../widget/price_info.dart';
 import 'confirm_order_screen.dart';
 
@@ -52,7 +52,7 @@ class OrderDetails extends ConsumerWidget {
                         itemBuilder: (context, index) {
                           return DismissbleWidget(
                             dismisskey: Key('${foods[index]}'),
-                            child: FoodWidget(foodModel: foods[index]),
+                            child: FoodWidgetWithCount(foodModel: foods[index]),
                             onDismissed: (direction) {
                               ref
                                   .watch(ordersListProvider.notifier)

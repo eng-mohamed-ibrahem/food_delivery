@@ -10,8 +10,8 @@ class FoodWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    ref.watch(countProvider);
 
+    
     return Card(
       elevation: 4,
       margin: const EdgeInsets.all(8),
@@ -48,51 +48,6 @@ class FoodWidget extends ConsumerWidget {
                   ],
                 ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  IconButton(
-                    style: Theme.of(context).iconButtonTheme.style!.copyWith(
-                        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                        backgroundColor: const MaterialStatePropertyAll(
-                            Color.fromRGBO(235, 251, 243, 1))),
-                    onPressed: () {
-                      /// [foodModel.count] is previous count
-                      foodModel.setCounts = foodModel.count - 1;
-                      ref.watch(countProvider.notifier).state = foodModel.count;
-                    },
-                    icon: Icon(
-                      Icons.remove,
-                      size: Theme.of(context).iconTheme.size,
-                      color: const Color.fromRGBO(21, 190, 119, 1),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Text('${foodModel.count}'),
-                  ),
-                  IconButton(
-                    style: Theme.of(context).iconButtonTheme.style!.copyWith(
-                          shape: MaterialStatePropertyAll(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                          backgroundColor: const MaterialStatePropertyAll(
-                            Color.fromRGBO(21, 190, 119, 1),
-                          ),
-                        ),
-                    onPressed: () {
-                      foodModel.setCounts = foodModel.count + 1;
-                      ref.watch(countProvider.notifier).update((state) => state+1);
-                    },
-                    icon: Icon(
-                      Icons.add,
-                      size: Theme.of(context).iconTheme.size,
-                      color: const Color.fromRGBO(255, 255, 255, 1),
-                    ),
-                  ),
-                ],
-              )
             ],
           ),
         ),
