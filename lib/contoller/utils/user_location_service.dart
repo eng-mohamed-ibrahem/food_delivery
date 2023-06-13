@@ -1,7 +1,7 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:location/location.dart' as location;
 
 ///
 /// return position of the user device
@@ -18,24 +18,24 @@ class UserLocationService {
     // get location service
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      await location.Location().requestService().then((value) async {
-        if (value) {
-          await Geolocator.openLocationSettings();
-        }
-      });
+      log('$serviceEnabled');
       // return Future.error('Location Service Disabled');
+      locationPermission = await Geolocator.requestPermission();
     }
 
     // get location permission
     locationPermission = await Geolocator.checkPermission();
+    log('$locationPermission');
     if (locationPermission == LocationPermission.denied) {
       locationPermission = await Geolocator.requestPermission();
-      if (locationPermission == LocationPermission.denied) {
+      if (locationPermission == LocationPermission.deniedForever) {
         return Future.error('Location Permission is denied');
       }
     }
     // location permission can not request permission again
     if (locationPermission == LocationPermission.deniedForever) {
+      locationPermission = await Geolocator.checkPermission();
+
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
@@ -51,7 +51,7 @@ class UserLocationService {
     if (defaultTargetPlatform == TargetPlatform.android) {
       locationSettings = AndroidSettings(
           accuracy: LocationAccuracy.high,
-          distanceFilter: 1,
+          distanceFilter: 100,
           forceLocationManager: true,
           intervalDuration: const Duration(seconds: 10),
           // (Optional) Set foreground notification config to keep the app alive
@@ -67,7 +67,7 @@ class UserLocationService {
       locationSettings = AppleSettings(
         accuracy: LocationAccuracy.high,
         activityType: ActivityType.fitness,
-        distanceFilter: 1,
+        distanceFilter: 100,
         pauseLocationUpdatesAutomatically: true,
         // Only set to true if our app will be started up in the background.
         showBackgroundLocationIndicator: false,
@@ -75,7 +75,7 @@ class UserLocationService {
     } else {
       locationSettings = const LocationSettings(
         accuracy: LocationAccuracy.high,
-        distanceFilter: 1,
+        distanceFilter: 100,
       );
     }
 
