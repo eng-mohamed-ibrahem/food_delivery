@@ -1,16 +1,5 @@
+## (not finished yet)...
 # food_delivery
+Food Delivery is a mobile application designed to help users order food from their favorite restaurants quickly and easily.
+With Food Delivery, users can browse menus from a wide variety of restaurants and cuisines, place orders, and track their delivery status in real-time.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
